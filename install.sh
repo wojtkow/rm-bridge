@@ -12,9 +12,11 @@ adb install RMBridge_1.3.3.apk
 sleep 60
 adb shell am start -n de.fun2code.android.rmbridge/de.fun2code.android.rmbridge.RMBridgeActivity
 sleep 10
+adb shell input keyevent 82
+sleep 10
 adb shell input touchscreen tap 240 500
 adb forward tcp:7474 tcp:7474
-adb forward tcp:7474 tcp:7474
+adb forward tcp:5555 tcp:5555
 
 ip=$(ip addr list eth0|grep "inet "|cut -d' ' -f6|cut -d/ -f1)
 redir --laddr=${ip} --caddr=127.0.0.1 &

@@ -16,12 +16,12 @@ adb shell input keyevent 82
 sleep 10
 adb shell input touchscreen tap 240 500
 adb forward tcp:7474 tcp:7474
-adb forward tcp:5555 tcp:5555
 
 ip=$(ip addr list eth0|grep "inet "|cut -d' ' -f6|cut -d/ -f1)
 redir --laddr=${ip} --caddr=127.0.0.1 &
 redir --laddr=${ip} --lport=5555 --caddr=127.0.0.1 --cport=5555 &
 redir --laddr=${ip} --lport=7474 --caddr=127.0.0.1 --cport=7474 &
+redir --laddr=${ip} --lport=80 --caddr=127.0.0.1 --cport=80 &
 
 while true; do sleep 1000; done
 # Detect ip and forward ADB ports outside to outside interface
